@@ -72,12 +72,6 @@ All scripts implement five estimators:
 4. **PPI (unweighted)**: Standard PPI rectification from Angelopoulos et al. (2023)
 5. **PPI (weighted)**: Hájek-type weighted PPI rectification (our contribution)
 
-**Variance Estimation:**
-- Uses correct survey sampling variance formulas (Särndal et al., 1992)
-- HT: Equation 2.10 with $(1-\hat{\xi}_i)/\hat{\xi}_i^2$ weighting
-- Hájek: Equation 2.12 with linearization (delta method)
-- Bootstrap procedure for estimated propensities
-
 ---
 
 ## Requirements
@@ -105,12 +99,6 @@ source("code/01_nhanes_analysis.R")
 - Figure 3: `figures/nhanes_intervals_estimated.pdf`
 - Console output with bias and CI widths
 
-**Key Results:**
-- Classic: bias −0.628, width 0.396
-- HT: bias −0.111, width 0.229
-- Hájek: bias −0.0277, width 0.229
-- PPI (weighted): bias 0.0101, width 0.328
-
 ### Main Simulation (Section 3.2)
 ```r
 source("code/02_simulation_main.R")
@@ -119,11 +107,6 @@ source("code/02_simulation_main.R")
 - Figure 1: `figures/ci_plot_estimated.pdf`
 - Table 1 printed to console
 
-**Key Results:**
-- All IPW methods achieve 96-100% coverage
-- HT and Hájek: width 0.092, coverage 96.5%
-- Weighted PPI: width 0.092, coverage 97.5%
-
 ### Varying p_lab Simulation (Section 3.3)
 ```r
 source("code/03_simulation_varying_plab.R")
@@ -131,10 +114,6 @@ source("code/03_simulation_varying_plab.R")
 **Outputs:**
 - Figure 2: `figures/ci_plot_estimated_faceted.pdf`
 - Table 2 printed to console
-
-**Key Results:**
-- Weighted PPI achieves lowest bias across all p_lab values
-- At p_lab = 0.01: weighted PPI bias 0.003 vs unweighted 0.008
 
 ---
 
